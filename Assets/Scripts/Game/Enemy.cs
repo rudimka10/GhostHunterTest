@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace GhostHunter.Game
 {
     public class Enemy : MonoBehaviour
     {
+
         [SerializeField] private Image _skin;
 
         [Header("Skins")]
@@ -15,6 +17,7 @@ namespace GhostHunter.Game
 
         private float _speed;
         private GameController _gameController;
+
 
 
         public void Construct(GameController gameController, float speed, Vector3 newPos)

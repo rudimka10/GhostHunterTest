@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace GhostHunter.UI
 {
     public class GameCanvas : MonoBehaviour
     {
+        [Inject]
         [SerializeField] private GameController _gameController;
         [SerializeField] private TMP_Text _pointsLabel;
 

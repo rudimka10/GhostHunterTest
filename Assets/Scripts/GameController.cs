@@ -4,15 +4,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Unils;
 using UnityEngine;
+using Zenject;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private int _maxGhostsCount;
+  
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private SpawnPoints _spawnPoints;
 
+    [SerializeField] private int _maxGhostsCount;
+    
+
     public ReactiveProperty<int> CurrentScore = new ReactiveProperty<int>();
     public ReactiveProperty<int> GhostsCount = new ReactiveProperty<int>();
+
+  
+    [Inject]
+    private void Construct(SpawnPoints spawnPoints)
+    {
+        _spawnPoints = spawnPoints;
+    }
 
     private void Awake()
     {
@@ -59,11 +70,12 @@ public class GameController : MonoBehaviour
 
     public void SpawnNewEnemy()
     {
-        float speed = Random.Range(60f, 85f);
-        var spawnPointRect = _spawnPoints.GetRandomSpawnPoint().transform;
         
-        var enemy = Instantiate(_enemyPrefab, spawnPointRect, false);
-        enemy.Construct(this, speed, spawnPointRect.position);
+        float speed = Random.Range(60f, 85f);
+        var spawnPoint = _spawnPoints.GetRandomSpawnPoint().transform;
+        
+        var enemy = Instantiate(_enemyPrefab, spawnPoint, false);
+        enemy.Construct(this, speed, spawnPoint.position);
 
 
 
