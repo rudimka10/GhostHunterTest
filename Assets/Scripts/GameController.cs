@@ -38,12 +38,12 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         CurrentScore.Value++;
         DestroyEnemy(enemy);
-        GhostsCount.Value--;
     }
 
     public void DestroyEnemy(Enemy enemy)
     {
         Destroy(enemy.gameObject);
+        GhostsCount.Value--;
 
     }
 
@@ -66,7 +66,6 @@ public class GameController : MonoBehaviour
         newPos.y = spawnPointRect.position.y;
         newPos.z = spawnPointRect.position.z;
         //spawnPointRect.position = newPos;
-        Debug.Log($"spawnPointRect = {spawnPointRect.position}, newPos = {newPos}");
         var enemy = Instantiate(_enemyPrefab, spawnPointRect, false);
         enemy.Construct(this, speed, newPos);
 

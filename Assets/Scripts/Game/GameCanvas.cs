@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GhostHunter.UI
 {
-    public class UI : MonoBehaviour
+    public class GameCanvas : MonoBehaviour
     {
         [SerializeField] private GameController _gameController;
         [SerializeField] private TMP_Text _pointsLabel;
