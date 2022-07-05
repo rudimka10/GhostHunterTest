@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private int _maxGhostsCount;
     [SerializeField] private Enemy _enemyPrefab;
-    [SerializeField] private GameObject _spawnGO;
+    [SerializeField] private SpawnPoints _spawnPoints;
 
     public ReactiveProperty<int> CurrentScore = new ReactiveProperty<int>();
     public ReactiveProperty<int> GhostsCount = new ReactiveProperty<int>();
@@ -59,15 +59,11 @@ public class GameController : MonoBehaviour
 
     public void SpawnNewEnemy()
     {
-        float speed = Random.Range(40f, 65f);
-        RectTransform spawnPointRect = (RectTransform)_spawnGO.transform;
-        Vector3 newPos = new Vector3();
-        newPos.x = Random.Range(-580f, 580f);
-        newPos.y = spawnPointRect.position.y;
-        newPos.z = spawnPointRect.position.z;
-        //spawnPointRect.position = newPos;
+        float speed = Random.Range(60f, 85f);
+        var spawnPointRect = _spawnPoints.GetRandomSpawnPoint().transform;
+        
         var enemy = Instantiate(_enemyPrefab, spawnPointRect, false);
-        enemy.Construct(this, speed, newPos);
+        enemy.Construct(this, speed, spawnPointRect.position);
 
 
 

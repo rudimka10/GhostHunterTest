@@ -21,8 +21,7 @@ namespace GhostHunter.Game
         {
             _gameController = gameController;
             _speed = speed;
-            var rect = (RectTransform)gameObject.transform;
-            rect.localPosition= newPos;
+            gameObject.transform.position = newPos;
             _skin.sprite = _aliveSkin;
         }
 
@@ -31,7 +30,7 @@ namespace GhostHunter.Game
             _skin.sprite = _deadSkin;
             _speed = 0;
             _gameController.KillEnemy(this);
-            
+
         }
 
         private void Update()
